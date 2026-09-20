@@ -1062,9 +1062,9 @@ const Page3 = () => {
                     font-semibold
                   "
                 >
-                  Daniel
+                  Leo
                   <br />
-                  Bech
+                  Harrison
                 </h2>
 
                 <p
@@ -1173,9 +1173,9 @@ const Page3 = () => {
                     font-semibold
                   "
                 >
-                  Casper
+                  Liam
                   <br />
-                  Nielsen
+                  Carter
                 </h2>
 
                 <p
