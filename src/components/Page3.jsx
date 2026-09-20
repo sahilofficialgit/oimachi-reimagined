@@ -1025,8 +1025,7 @@ const Page3 = () => {
               >
                 <img
                   ref={image1Ref}
-                  src="https://cdn.prod.website-files.com/68a1f1d118b11d82119e8540/6a33e27fd79e90d5cadd337e_home-about-daniel.avif"
-                  alt="Founder 01"
+                  src="https://i.pinimg.com/736x/ae/32/35/ae32350bccaf286509ffa3bcd989c906.jpg"
                   className="
                     w-full
                     h-[60vh]
@@ -1062,9 +1061,9 @@ const Page3 = () => {
                     font-semibold
                   "
                 >
-                  Leo
+                  Mila
                   <br />
-                  Harrison
+                  Anders
                 </h2>
 
                 <p
@@ -1136,7 +1135,7 @@ const Page3 = () => {
               >
                 <img
                   ref={image2Ref}
-                  src="https://cdn.prod.website-files.com/68a1f1d118b11d82119e8540/6a33e2872a33ee22444ef7c7_home-about-casper.avif"
+                  src="https://i.pinimg.com/736x/1f/12/f3/1f12f3ea8e11284c757228ff9067a349.jpg"
                   alt="Founder 02"
                   className="
                     w-full
@@ -1173,9 +1172,9 @@ const Page3 = () => {
                     font-semibold
                   "
                 >
-                  Liam
+                  Emilia
                   <br />
-                  Carter
+                  Vogel
                 </h2>
 
                 <p
