@@ -1135,7 +1135,7 @@ const Page3 = () => {
               >
                 <img
                   ref={image2Ref}
-                  src="https://i.pinimg.com/1200x/4b/fc/98/4bfc98a69671d732bad3f0b0f4c01fd2.jpg"
+                  src="https://i.pinimg.com/1200x/e4/7d/44/e47d44b3818c2e2e32626892375aeb49.jpg"
                   alt="Founder 02"
                   className="
                     w-full
