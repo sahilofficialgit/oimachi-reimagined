@@ -1,114 +1,264 @@
-import React from "react";
-import image1 from "../assets/images/card-img1.jpg";
-import image2 from "../assets/images/card-img2.jpg";
-import image3 from "../assets/images/card-img3.avif";
-import image4 from "../assets/images/card-img4.avif";
-import image5 from "../assets/images/card-img5.avif";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const RightHero = () => {
+  const panelRef = useRef(null);
+  const numberRef = useRef(null);
+  const titleRef = useRef(null);
+  const servicesRef = useRef(null);
+  const exploreRef = useRef(null);
+
+  const services = [
+    "Strategy",
+    "Design",
+    "Motion",
+    "Development",
+  ];
+
+  useGSAP(() => {
+    const services = servicesRef.current.children;
+
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "power3.out",
+      },
+    });
+
+    tl.fromTo(
+      panelRef.current,
+      {
+        x: 50,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.9,
+      }
+    )
+      .fromTo(
+        numberRef.current,
+        {
+          y: 20,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+        },
+        "-=0.45"
+      )
+      .fromTo(
+        titleRef.current,
+        {
+          y: 35,
+          opacity: 0,
+          filter: "blur(8px)",
+        },
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 0.8,
+        },
+        "-=0.25"
+      )
+      .fromTo(
+        services,
+        {
+          x: 25,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.45,
+        },
+        "-=0.35"
+      )
+      .fromTo(
+        exploreRef.current,
+        {
+          y: 15,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+        },
+        "-=0.2"
+      );
+
+    // subtle number rotation
+    gsap.to(numberRef.current, {
+      rotation: 360,
+      duration: 18,
+      repeat: -1,
+      ease: "none",
+    });
+
+    // Service hover
+    Array.from(services).forEach((item) => {
+      const arrow = item.querySelector(".service-arrow");
+
+      item.addEventListener("mouseenter", () => {
+        gsap.to(item, {
+          x: 8,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+
+        gsap.to(arrow, {
+          x: 5,
+          opacity: 1,
+          duration: 0.25,
+        });
+      });
+
+      item.addEventListener("mouseleave", () => {
+        gsap.to(item, {
+          x: 0,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+
+        gsap.to(arrow, {
+          x: 0,
+          opacity: 0.35,
+          duration: 0.25,
+        });
+      });
+    });
+
+    return () => {
+      Array.from(services).forEach((item) => {
+        item.replaceWith(item.cloneNode(true));
+      });
+    };
+  }, []);
+
   return (
-    <div className="h-auto md:h-full w-full md:w-[27%] flex flex-col gap-2 rounded-sm overflow-y-auto hide-scrollbar cursor-pointer">
+    <div
+      ref={panelRef}
+      className="
+        w-full
+        md:w-[27%]
+        h-[32vh]
+        md:h-full
+        border border-black/10
+        px-5
+        py-5
+        md:px-[1.4vw]
+        md:py-[1.4vw]
+        flex
+        flex-col
+        justify-between
+        overflow-hidden
+        font-sans
+      "
+    >
+      {/* TOP */}
+      <div>
+        <div className="flex items-center justify-between">
+          <span
+            ref={numberRef}
+            className="
+              text-[11px]
+              md:text-[0.7vw]
+              tracking-[0.12em]
+              font-medium
+            "
+          >
+            01
+          </span>
 
-      <div className="group flex flex-row md:flex-col gap-2 md:gap-1 hover:bg-white transition-colors duration-200 px-2 py-2 rounded-sm">
-        
-        <img
-          className="rounded-xl h-[120px] md:h-[33vh] w-[40%] md:w-full object-cover transition-transform duration-300 md:group-hover:scale-95"
-          src={image1}
-          alt=""
-        />
-
-        <div className="w-[60%] md:w-full flex flex-col gap-1">
-          <h3 className="font-semibold text-sm">About Oimachi</h3>
-
-          <p className="text-gray-600 font-semibold text-xs">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            sapiente veritatis facere suscipit quis ea corporis dicta optio, totam
-            nihil?
-          </p>
+          <span className="text-[10px] md:text-[0.65vw] tracking-[0.12em] uppercase opacity-50">
+            Studio Signal
+          </span>
         </div>
 
-      </div>
+        {/* TITLE */}
+        <div
+          ref={titleRef}
+          className="mt-8 md:mt-[3vw]"
+        >
+          <h3 className="text-[9vw] md:text-[4vw] leading-[0.82] tracking-[-0.07em] font-medium">
+            Digital
+          </h3>
 
-      <div className="group flex flex-row md:flex-col gap-2 md:gap-1 hover:bg-white transition-colors duration-200 px-2 py-2 rounded-sm">
-        
-        <img
-          className="rounded-xl h-[120px] md:h-[33vh] w-[40%] md:w-full object-cover transition-transform duration-300 md:group-hover:scale-95"
-          src={image2}
-          alt=""
-        />
-
-        <div className="w-[60%] md:w-full flex flex-col gap-1">
-          <h3 className="font-semibold text-sm">About oimachi</h3>
-
-          <p className="text-gray-600 font-semibold text-xs">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            sapiente veritatis facere suscipit quis ea corporis dicta optio, totam
-            nihil?
-          </p>
+          <h3 className="text-[9vw] md:text-[4vw] leading-[0.82] tracking-[-0.07em] font-medium">
+            Experiences
+          </h3>
         </div>
-
       </div>
 
-      <div className="group flex flex-row md:flex-col gap-2 md:gap-1 hover:bg-white transition-colors duration-200 px-2 py-2 rounded-sm">
-        
-        <img
-          className="rounded-xl h-[120px] md:h-[33vh] w-[40%] md:w-full object-cover transition-transform duration-300 md:group-hover:scale-95"
-          src={image3}
-          alt=""
-        />
+      {/* SERVICES */}
+      <div
+        ref={servicesRef}
+        className="mt-8 md:mt-0"
+      >
+        {services.map((service, index) => (
+          <div
+            key={service}
+            className="
+              service-item
+              group
+              flex
+              items-center
+              justify-between
+              border-t
+              border-black/15
+              py-2.5
+              md:py-[0.55vw]
+              cursor-pointer
+            "
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-[9px] md:text-[0.55vw] opacity-35">
+                0{index + 1}
+              </span>
 
-        <div className="w-[60%] md:w-full flex flex-col gap-1">
-          <h3 className="font-semibold text-sm">About oimachi</h3>
+              <span className="text-sm md:text-[0.85vw]">
+                {service}
+              </span>
+            </div>
 
-          <p className="text-gray-600 font-semibold text-xs">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            sapiente veritatis facere suscipit quis ea corporis dicta optio, totam
-            nihil?
-          </p>
-        </div>
-
+            <span className="service-arrow text-sm opacity-35">
+              ↗
+            </span>
+          </div>
+        ))}
       </div>
 
-      <div className="group flex flex-row md:flex-col gap-2 md:gap-1 hover:bg-white transition-colors duration-200 px-2 py-2 rounded-sm">
-        
-        <img
-          className="rounded-xl h-[120px] md:h-[33vh] w-[40%] md:w-full object-cover transition-transform duration-300 md:group-hover:scale-95"
-          src={image4}
-          alt=""
-        />
+      {/* BOTTOM */}
+      <div
+        ref={exploreRef}
+        className="
+          hidden
+          md:flex
+          items-center
+          justify-between
+          border-t
+          border-black/15
+          pt-[0.7vw]
+          text-[0.65vw]
+          tracking-[0.12em]
+          uppercase
+        "
+      >
+        <span className="opacity-45">
+          Oren Studio
+        </span>
 
-        <div className="w-[60%] md:w-full flex flex-col gap-1">
-          <h3 className="font-semibold text-sm">About oimachi</h3>
-
-          <p className="text-gray-600 font-semibold text-xs">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            sapiente veritatis facere suscipit quis ea corporis dicta optio, totam
-            nihil?
-          </p>
-        </div>
-
+        <span className="flex items-center gap-2">
+          Explore
+          <span className="text-sm">↗</span>
+        </span>
       </div>
-
-      <div className="group flex flex-row md:flex-col gap-2 md:gap-1 hover:bg-white transition-colors duration-200 px-2 py-2 rounded-sm">
-        
-        <img
-          className="rounded-xl h-[120px] md:h-[33vh] w-[40%] md:w-full object-cover transition-transform duration-300 md:group-hover:scale-95"
-          src={image5}
-          alt=""
-        />
-
-        <div className="w-[60%] md:w-full flex flex-col gap-1">
-          <h3 className="font-semibold text-sm">About oimachi</h3>
-
-          <p className="text-gray-600 font-semibold text-xs">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            sapiente veritatis facere suscipit quis ea corporis dicta optio, totam
-            nihil?
-          </p>
-        </div>
-
-      </div>
-
     </div>
   );
 };
