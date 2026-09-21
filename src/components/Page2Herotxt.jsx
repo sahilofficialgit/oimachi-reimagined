@@ -1,34 +1,150 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef } from "react";
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Page2Herotxt = () => {
+  const heroRef = useRef(null);
   const headingRef = useRef(null);
-  const [headingVisible, setHeadingVisible] = useState(false);
+  const labelRef = useRef(null);
+  const lineRef = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHeadingVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.65,
-      }
-    );
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // -----------------------------------------
+      // INITIAL STATES
+      // -----------------------------------------
 
-    if (headingRef.current) {
-      observer.observe(headingRef.current);
-    }
+      gsap.set(labelRef.current, {
+        y: 25,
+        opacity: 0,
+      });
 
-    return () => observer.disconnect();
+      gsap.set(lineRef.current, {
+        scaleX: 0,
+        transformOrigin: "left center",
+      });
+
+      gsap.set(headingRef.current, {
+        y: 70,
+        x: -20,
+        opacity: 0,
+        filter: "blur(14px)",
+        skewX: 4,
+        scale: 1.02,
+      });
+
+      // -----------------------------------------
+      // SCROLL TRIGGER
+      // -----------------------------------------
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top 78%",
+          end: "center 42%",
+          scrub: 1.8,
+        },
+      });
+
+      // Label
+      tl.to(
+        labelRef.current,
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+        0
+      );
+
+      // Line
+      tl.to(
+        lineRef.current,
+        {
+          scaleX: 1,
+          duration: 1.2,
+          ease: "power4.inOut",
+        },
+        0.08
+      );
+
+      // Heading
+      tl.to(
+        headingRef.current,
+        {
+          y: 0,
+          x: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          skewX: 0,
+          scale: 1,
+          duration: 1.7,
+          ease: "power4.out",
+        },
+        0.15
+      );
+    }, heroRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
-    <div className="min-h-[35vh] md:h-[40vh] w-full pt-20 pb-8 flex items-center justify-center px-2 sm:px-3">
+    <div
+      ref={heroRef}
+      className="
+        min-h-[35vh]
+        md:h-[40vh]
+        w-full
+        pt-20
+        pb-8
+        flex
+        flex-col
+        items-center
+        justify-center
+        px-2
+        sm:px-3
+        font-sans
+      "
+    >
+      {/* TOP LABEL */}
+
+      <div
+        ref={labelRef}
+        className="
+          w-full
+          max-w-5xl
+          flex
+          items-center
+          justify-between
+          mb-7
+          px-1
+        "
+      >
+        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-black/40">
+          Selected Work
+        </span>
+
+        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-black/40">
+          05 Projects
+        </span>
+      </div>
+
+      {/* LINE */}
+
+      <div
+        ref={lineRef}
+        className="w-full max-w-5xl h-px bg-black/15 mb-8"
+      />
+
+      {/* HEADING */}
+
       <h1
         ref={headingRef}
-        className={`
+        className="
           text-[#000000]
           font-sans
           text-2xl
@@ -36,23 +152,14 @@ const Page2Herotxt = () => {
           md:text-4xl
           leading-[1.05]
           text-center
-
-          transition-all
-          duration-[1500ms]
-          ease-out
-
-          ${
-            headingVisible
-              ? "opacity-100 blur-0 translate-x-0 skew-x-0 scale-100"
-              : "opacity-0 blur-[12px] translate-x-[-18px] skew-x-[12deg] scale-[1.03]"
-          }
-        `}
-        style={{
-          transitionDelay: "300ms",
-        }}
+          tracking-[-0.025em]
+        "
       >
         Partnering with
-        <span className="italic font-bold text-orange-400"> ambitious</span> teams to
+        <span className="italic font-bold text-orange-400">
+          {" "}ambitious
+        </span>{" "}
+        teams to
         <br className="hidden md:block" />
         <span className="md:hidden"> </span>
         build relevant digital experiences in
