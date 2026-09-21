@@ -486,10 +486,10 @@ const Page5 = () => {
               <p className="text-sm text-white/40 mb-3">Start a conversation</p>
 
               <a
-                href="mailto:hello@studio.com"
+                href="mailto:sahilshaikh0729@gmail.com"
                 className="text-2xl md:text-4xl font-medium tracking-tight hover:text-white/50 transition-colors"
               >
-                hello@studio.com
+                sahilshaikh0729@gmail.com
               </a>
             </div>
 
@@ -498,7 +498,7 @@ const Page5 = () => {
             <div className="flex justify-start md:justify-end">
               <a
                 ref={magneticRef}
-                href="mailto:hello@studio.com"
+                href="mailto:sahilshaikh0729@gmail.com"
                 className="group relative w-40 h-40 md:w-52 md:h-52 rounded-full border border-white/25 flex items-center justify-center overflow-hidden"
               >
                 <span className="relative z-10 text-sm uppercase tracking-[0.15em] group-hover:text-black transition-colors duration-500">
@@ -520,10 +520,10 @@ const Page5 = () => {
             </p>
 
             <a
-              href="mailto:hello@studio.com"
+              href="mailto:sahilshaikh0729@gmail.com"
               className="text-sm hover:text-white/50 transition-colors"
             >
-              hello@studio.com
+              sahilshaikh0729@gmail.com
             </a>
           </div>
 
@@ -533,10 +533,10 @@ const Page5 = () => {
             </p>
 
             <a
-              href="tel:+910000000000"
+              href="tel:+919011724797"
               className="text-sm hover:text-white/50 transition-colors"
             >
-              +91 00000 00000
+              +91 90117 24797
             </a>
           </div>
 
@@ -545,7 +545,7 @@ const Page5 = () => {
               Location
             </p>
 
-            <p className="text-sm">Pune, India</p>
+            <p className="text-sm">Dhule, India</p>
           </div>
 
           <div>
@@ -555,21 +555,21 @@ const Page5 = () => {
 
             <div className="flex flex-col gap-2">
               <a
-                href="#"
+                href="https://www.instagram.com/ig.sahillll?igsh=d3lsbDNnYzVlOGpk"
                 className="text-sm hover:text-white/50 transition-colors"
               >
                 Instagram ↗
               </a>
 
               <a
-                href="#"
+                href="https://www.linkedin.com/in/sahilshaikh-tech/"
                 className="text-sm hover:text-white/50 transition-colors"
               >
                 LinkedIn ↗
               </a>
 
               <a
-                href="#"
+                href="https://github.com/sahilofficialgit"
                 className="text-sm hover:text-white/50 transition-colors"
               >
                 GitHub ↗
