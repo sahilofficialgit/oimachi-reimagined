@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useRef } from "react";
-import myphoto from "../assets/images/my-img.png"
+import myphoto from "../assets/images/my-img.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,13 +11,14 @@ const Page3 = () => {
 
   const introRef = useRef(null);
   const founder1Ref = useRef(null);
-  const founder2Ref = useRef(null);
 
   const image1Ref = useRef(null);
-  const image2Ref = useRef(null);
-
   const number1Ref = useRef(null);
-  const number2Ref = useRef(null);
+
+  const founderTextRef = useRef(null);
+  const founderNameRef = useRef(null);
+  const founderDescriptionRef = useRef(null);
+  const founderRoleRef = useRef(null);
 
   const finalRef = useRef(null);
 
@@ -39,7 +40,7 @@ const Page3 = () => {
             trigger: sectionRef.current,
             start: "top top",
             end: "bottom bottom",
-            scrub: 2.5,
+            scrub: 1.5,
           },
         });
 
@@ -51,20 +52,10 @@ const Page3 = () => {
           scale: 0.92,
         });
 
-        gsap.set(founder2Ref.current, {
-          opacity: 0,
-          x: 100,
-          scale: 0.92,
-        });
-
         gsap.set(image1Ref.current, {
           scale: 1.15,
           x: -30,
-        });
-
-        gsap.set(image2Ref.current, {
-          scale: 1.15,
-          x: 30,
+          clipPath: "inset(8% 8% 8% 8%)",
         });
 
         gsap.set(number1Ref.current, {
@@ -72,15 +63,34 @@ const Page3 = () => {
           y: 30,
         });
 
-        gsap.set(number2Ref.current, {
+        gsap.set(founderTextRef.current, {
           opacity: 0,
-          y: 30,
+          x: 55,
+          filter: "blur(10px)",
+        });
+
+        gsap.set(founderNameRef.current, {
+          opacity: 0,
+          y: 35,
+          filter: "blur(8px)",
+        });
+
+        gsap.set(founderDescriptionRef.current, {
+          opacity: 0,
+          y: 25,
+          filter: "blur(6px)",
+        });
+
+        gsap.set(founderRoleRef.current, {
+          opacity: 0,
+          y: 20,
         });
 
         gsap.set(finalRef.current, {
           opacity: 0,
           y: 100,
-          scale: 0.92,
+          scale: 0.96,
+          filter: "blur(12px)",
         });
 
         /* CREATIVE ART */
@@ -115,26 +125,33 @@ const Page3 = () => {
           duration: 1,
         });
 
-        /* FOUNDER 01 ENTER */
+        /* =====================================================
+           FOUNDER 01 ENTER
+        ===================================================== */
 
         tl.to(founder1Ref.current, {
           opacity: 1,
           x: 0,
           scale: 1,
           duration: 1.2,
-          ease: "power2.out",
+          ease: "power3.out",
         });
+
+        /* IMAGE REVEAL */
 
         tl.to(
           image1Ref.current,
           {
             scale: 1,
             x: 0,
-            duration: 1.4,
-            ease: "none",
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 1.8,
+            ease: "power3.out",
           },
           "<"
         );
+
+        /* NUMBER */
 
         tl.to(
           number1Ref.current,
@@ -142,11 +159,69 @@ const Page3 = () => {
             opacity: 1,
             y: 0,
             duration: 0.7,
+            ease: "power3.out",
           },
-          "<0.3"
+          "<0.35"
         );
 
-        /* CREATIVE ART ENTER — RIGHT */
+        /* TEXT BLOCK */
+
+        tl.to(
+          founderTextRef.current,
+          {
+            opacity: 1,
+            x: 0,
+            filter: "blur(0px)",
+            duration: 1,
+            ease: "power3.out",
+          },
+          "<0.1"
+        );
+
+        /* NAME */
+
+        tl.to(
+          founderNameRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.9,
+            ease: "power3.out",
+          },
+          "<0.25"
+        );
+
+        /* DESCRIPTION */
+
+        tl.to(
+          founderDescriptionRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "<0.2"
+        );
+
+        /* ROLE */
+
+        tl.to(
+          founderRoleRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power3.out",
+          },
+          "<0.15"
+        );
+
+        /* =====================================================
+           CREATIVE ART ENTER — RIGHT
+        ===================================================== */
 
         tl.to(
           creativeRef.current,
@@ -188,16 +263,20 @@ const Page3 = () => {
           "<0.2"
         );
 
-        /* HOLD */
+        /* =====================================================
+           HOLD
+        ===================================================== */
 
         tl.to(
           {},
           {
-            duration: 1,
+            duration: 1.5,
           }
         );
 
-        /* FOUNDER 01 EXIT */
+        /* =====================================================
+           FOUNDER 01 EXIT
+        ===================================================== */
 
         tl.to(founder1Ref.current, {
           opacity: 0,
@@ -205,35 +284,38 @@ const Page3 = () => {
           scale: 0.94,
           filter: "blur(6px)",
           duration: 1.2,
+          ease: "power3.inOut",
         });
 
-        /* ART RIGHT → LEFT */
+        /* =====================================================
+           ART RIGHT → LEFT
+        ===================================================== */
 
         tl.to(
-  creativeRef.current,
-  {
-    left: "14%",
-    top: "50%",
-    scale: 0.92,
-    rotation: 18,
-    duration: 4.5,
-    ease: "power1.inOut",
-  },
-  "<0.05"
-);
+          creativeRef.current,
+          {
+            left: "14%",
+            top: "50%",
+            scale: 0.92,
+            rotation: 18,
+            duration: 2.8,
+            ease: "power1.inOut",
+          },
+          "<0.05"
+        );
 
         tl.to(
-  orbitRef.current,
-  {
-    left: "14%",
-    top: "50%",
-    scale: 0.88,
-    rotation: -25,
-    duration: 3.5,
-    ease: "power1.inOut",
-  },
-  "<"
-);
+          orbitRef.current,
+          {
+            left: "14%",
+            top: "50%",
+            scale: 0.88,
+            rotation: -25,
+            duration: 2.5,
+            ease: "power1.inOut",
+          },
+          "<"
+        );
 
         tl.to(
           innerRef.current,
@@ -245,57 +327,9 @@ const Page3 = () => {
           "<"
         );
 
-        /* FOUNDER 02 ENTER */
-
-        tl.to(founder2Ref.current, {
-          opacity: 1,
-          x: 0,
-          scale: 1,
-          duration: 1.2,
-          ease: "power2.out",
-        });
-
-        tl.to(
-          image2Ref.current,
-          {
-            scale: 1,
-            x: 0,
-            duration: 1.4,
-            ease: "none",
-          },
-          "<"
-        );
-
-        tl.to(
-          number2Ref.current,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-          },
-          "<0.3"
-        );
-
-        /* HOLD */
-
-        tl.to(
-          {},
-          {
-            duration: 1,
-          }
-        );
-
-        /* FOUNDER 02 EXIT */
-
-        tl.to(founder2Ref.current, {
-          opacity: 0,
-          x: 140,
-          scale: 0.94,
-          filter: "blur(6px)",
-          duration: 1.2,
-        });
-
-        /* ART EXIT */
+        /* =====================================================
+           ART EXIT
+        ===================================================== */
 
         tl.to(
           creativeRef.current,
@@ -304,6 +338,7 @@ const Page3 = () => {
             scale: 0.65,
             rotation: 35,
             duration: 0.8,
+            ease: "power3.in",
           },
           "<0.05"
         );
@@ -315,19 +350,27 @@ const Page3 = () => {
             scale: 0.55,
             rotation: -40,
             duration: 0.8,
+            ease: "power3.in",
           },
           "<"
         );
 
-        /* FINAL */
+        /* =====================================================
+           FINAL — BLUR REVEAL
+        ===================================================== */
 
-        tl.to(finalRef.current, {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1.5,
-          ease: "power2.out",
-        });
+        tl.to(
+          finalRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 1.2,
+            ease: "power3.out",
+          },
+          "<0.35"
+        );
 
         return () => tl.kill();
       });
@@ -346,27 +389,51 @@ const Page3 = () => {
           },
         });
 
-        gsap.set(founder1Ref.current, {
-          opacity: 0,
-          y: 80,
-        });
+        /* INITIAL STATES */
 
-        gsap.set(founder2Ref.current, {
+        gsap.set(founder1Ref.current, {
           opacity: 0,
           y: 80,
         });
 
         gsap.set(image1Ref.current, {
           scale: 1.15,
+          clipPath: "inset(8% 8% 8% 8%)",
         });
 
-        gsap.set(image2Ref.current, {
-          scale: 1.15,
+        gsap.set(number1Ref.current, {
+          opacity: 0,
+          y: 25,
+        });
+
+        gsap.set(founderTextRef.current, {
+          opacity: 0,
+          y: 35,
+          filter: "blur(8px)",
+        });
+
+        gsap.set(founderNameRef.current, {
+          opacity: 0,
+          y: 25,
+          filter: "blur(7px)",
+        });
+
+        gsap.set(founderDescriptionRef.current, {
+          opacity: 0,
+          y: 20,
+          filter: "blur(6px)",
+        });
+
+        gsap.set(founderRoleRef.current, {
+          opacity: 0,
+          y: 15,
         });
 
         gsap.set(finalRef.current, {
           opacity: 0,
           y: 70,
+          scale: 0.96,
+          filter: "blur(10px)",
         });
 
         /* MOBILE ART */
@@ -387,7 +454,9 @@ const Page3 = () => {
           rotation: 15,
         });
 
-        /* INTRO */
+        /* =====================================================
+           INTRO
+        ===================================================== */
 
         tl.to(introRef.current, {
           opacity: 0,
@@ -396,24 +465,101 @@ const Page3 = () => {
           duration: 1,
         });
 
-        /* FOUNDER 01 */
+        /* =====================================================
+           FOUNDER 01
+        ===================================================== */
 
         tl.to(founder1Ref.current, {
           opacity: 1,
           y: 0,
           duration: 1.2,
+          ease: "power3.out",
         });
+
+        /* IMAGE */
 
         tl.to(
           image1Ref.current,
           {
             scale: 1,
-            duration: 1.4,
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 1.5,
+            ease: "power3.out",
           },
           "<"
         );
 
-        /* ART ENTER */
+        /* NUMBER */
+
+        tl.to(
+          number1Ref.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power3.out",
+          },
+          "<0.25"
+        );
+
+        /* TEXT */
+
+        tl.to(
+          founderTextRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.9,
+            ease: "power3.out",
+          },
+          "<0.1"
+        );
+
+        /* NAME */
+
+        tl.to(
+          founderNameRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "<0.2"
+        );
+
+        /* DESCRIPTION */
+
+        tl.to(
+          founderDescriptionRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.7,
+            ease: "power3.out",
+          },
+          "<0.15"
+        );
+
+        /* ROLE */
+
+        tl.to(
+          founderRoleRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power3.out",
+          },
+          "<0.1"
+        );
+
+        /* =====================================================
+           ART ENTER
+        ===================================================== */
 
         tl.to(
           creativeRef.current,
@@ -424,6 +570,7 @@ const Page3 = () => {
             scale: 0.48,
             rotation: 0,
             duration: 1,
+            ease: "power3.out",
           },
           "<0.2"
         );
@@ -437,29 +584,37 @@ const Page3 = () => {
             scale: 0.42,
             rotation: 0,
             duration: 1.1,
+            ease: "power3.out",
           },
           "<"
         );
 
-        /* HOLD */
+        /* =====================================================
+           HOLD
+        ===================================================== */
 
         tl.to(
           {},
           {
-            duration: 1,
+            duration: 1.5,
           }
         );
 
-        /* FOUNDER 01 EXIT */
+        /* =====================================================
+           FOUNDER 01 EXIT
+        ===================================================== */
 
         tl.to(founder1Ref.current, {
           opacity: 0,
           y: -80,
           filter: "blur(5px)",
           duration: 1,
+          ease: "power3.inOut",
         });
 
-        /* ART RIGHT → LEFT */
+        /* =====================================================
+           ART RIGHT → LEFT
+        ===================================================== */
 
         tl.to(
           creativeRef.current,
@@ -487,40 +642,9 @@ const Page3 = () => {
           "<"
         );
 
-        /* FOUNDER 02 */
-
-        tl.to(founder2Ref.current, {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-        });
-
-        tl.to(
-          image2Ref.current,
-          {
-            scale: 1,
-            duration: 1.4,
-          },
-          "<"
-        );
-
-        /* HOLD */
-
-        tl.to(
-          {},
-          {
-            duration: 1,
-          }
-        );
-
-        /* EXIT */
-
-        tl.to(founder2Ref.current, {
-          opacity: 0,
-          y: -80,
-          filter: "blur(5px)",
-          duration: 1,
-        });
+        /* =====================================================
+           ART EXIT
+        ===================================================== */
 
         tl.to(
           creativeRef.current,
@@ -528,6 +652,7 @@ const Page3 = () => {
             opacity: 0,
             scale: 0.35,
             duration: 0.7,
+            ease: "power3.in",
           },
           "<0.05"
         );
@@ -538,17 +663,27 @@ const Page3 = () => {
             opacity: 0,
             scale: 0.3,
             duration: 0.7,
+            ease: "power3.in",
           },
           "<"
         );
 
-        /* FINAL */
+        /* =====================================================
+           FINAL — BLUR REVEAL
+        ===================================================== */
 
-        tl.to(finalRef.current, {
-          opacity: 1,
-          y: 0,
-          duration: 1.4,
-        });
+        tl.to(
+          finalRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 1.1,
+            ease: "power3.out",
+          },
+          "<0.25"
+        );
 
         return () => tl.kill();
       });
@@ -562,7 +697,7 @@ const Page3 = () => {
       ref={sectionRef}
       className="relative w-full bg-[#F0F0F0]"
     >
-      <div className="h-[380vh] md:h-[360vh]">
+      <div className="h-[270vh] md:h-[270vh]">
 
         <div
           ref={stageRef}
@@ -607,8 +742,6 @@ const Page3 = () => {
               >
                 <defs>
 
-                  {/* Main Gradient */}
-
                   <linearGradient
                     id="mainGradient"
                     x1="40"
@@ -623,8 +756,6 @@ const Page3 = () => {
                     <stop offset="1" stopColor="#06B6D4" />
                   </linearGradient>
 
-                  {/* Highlight */}
-
                   <linearGradient
                     id="highlightGradient"
                     x1="80"
@@ -633,12 +764,22 @@ const Page3 = () => {
                     y2="350"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.8" />
-                    <stop offset="0.35" stopColor="#FFFFFF" stopOpacity="0.15" />
-                    <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
+                    <stop
+                      offset="0"
+                      stopColor="#FFFFFF"
+                      stopOpacity="0.8"
+                    />
+                    <stop
+                      offset="0.35"
+                      stopColor="#FFFFFF"
+                      stopOpacity="0.15"
+                    />
+                    <stop
+                      offset="1"
+                      stopColor="#FFFFFF"
+                      stopOpacity="0"
+                    />
                   </linearGradient>
-
-                  {/* Glow */}
 
                   <filter
                     id="softGlow"
@@ -652,8 +793,6 @@ const Page3 = () => {
                       result="blur"
                     />
                   </filter>
-
-                  {/* Shadow */}
 
                   <filter
                     id="objectShadow"
@@ -672,8 +811,6 @@ const Page3 = () => {
                   </filter>
                 </defs>
 
-                {/* Soft glow behind object */}
-
                 <ellipse
                   cx="190"
                   cy="240"
@@ -683,8 +820,6 @@ const Page3 = () => {
                   opacity="0.12"
                   filter="url(#softGlow)"
                 />
-
-                {/* Main futuristic sculpture */}
 
                 <path
                   d="
@@ -704,8 +839,6 @@ const Page3 = () => {
                   filter="url(#objectShadow)"
                 />
 
-                {/* Glass inner surface */}
-
                 <path
                   d="
                     M169 58
@@ -724,8 +857,6 @@ const Page3 = () => {
                   opacity="0.7"
                 />
 
-                {/* Sharp reflective edge */}
-
                 <path
                   d="
                     M130 62
@@ -738,8 +869,6 @@ const Page3 = () => {
                   strokeLinecap="round"
                   opacity="0.7"
                 />
-
-                {/* Secondary reflection */}
 
                 <path
                   d="
@@ -754,8 +883,6 @@ const Page3 = () => {
                   opacity="0.35"
                 />
 
-                {/* Small cut / detail */}
-
                 <path
                   d="
                     M246 377
@@ -767,8 +894,6 @@ const Page3 = () => {
                   strokeLinecap="round"
                   opacity="0.45"
                 />
-
-                {/* Floating sphere */}
 
                 <circle
                   cx="306"
@@ -785,16 +910,12 @@ const Page3 = () => {
                   opacity="0.8"
                 />
 
-                {/* Tiny blue particle */}
-
                 <circle
                   cx="72"
                   cy="318"
                   r="5"
                   fill="#06B6D4"
                 />
-
-                {/* Tiny violet particle */}
 
                 <circle
                   cx="278"
@@ -824,7 +945,6 @@ const Page3 = () => {
                 className="w-full h-full overflow-visible"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                {/* Outer orbit */}
 
                 <ellipse
                   cx="235"
@@ -839,8 +959,6 @@ const Page3 = () => {
                   opacity="0.35"
                 />
 
-                {/* Second orbit */}
-
                 <ellipse
                   cx="235"
                   cy="235"
@@ -854,8 +972,6 @@ const Page3 = () => {
                   opacity="0.3"
                 />
 
-                {/* Inner orbit */}
-
                 <ellipse
                   cx="235"
                   cy="235"
@@ -867,8 +983,6 @@ const Page3 = () => {
                   strokeWidth="1"
                   opacity="0.2"
                 />
-
-                {/* Orbiting dots */}
 
                 <circle
                   cx="411"
@@ -891,8 +1005,6 @@ const Page3 = () => {
                   fill="#F97316"
                 />
 
-                {/* Tiny cross */}
-
                 <path
                   d="M73 150H89M81 142V158"
                   stroke="#4F46E5"
@@ -900,8 +1012,6 @@ const Page3 = () => {
                   strokeLinecap="round"
                   opacity="0.5"
                 />
-
-                {/* Small square */}
 
                 <rect
                   x="370"
@@ -980,7 +1090,7 @@ const Page3 = () => {
           </div>
 
           {/* =================================================
-              FOUNDER 01
+              FOUNDER 01 — SAHIL
           ================================================= */}
 
           <div
@@ -1009,6 +1119,9 @@ const Page3 = () => {
                 md:gap-16
               "
             >
+
+              {/* IMAGE */}
+
               <div
                 className="
                   w-[65vw]
@@ -1026,6 +1139,7 @@ const Page3 = () => {
                 <img
                   ref={image1Ref}
                   src={myphoto}
+                  alt="Sahil Shaikh"
                   className="
                     w-full
                     h-[60vh]
@@ -1035,7 +1149,15 @@ const Page3 = () => {
                 />
               </div>
 
-              <div className="w-full md:w-[42%]">
+              {/* CONTENT */}
+
+              <div
+                ref={founderTextRef}
+                className="w-full md:w-[42%]"
+              >
+
+                {/* NUMBER */}
+
                 <div
                   ref={number1Ref}
                   className="
@@ -1049,7 +1171,10 @@ const Page3 = () => {
                   01 / Founder
                 </div>
 
+                {/* NAME */}
+
                 <h2
+                  ref={founderNameRef}
                   className="
                     text-4xl
                     sm:text-5xl
@@ -1066,7 +1191,10 @@ const Page3 = () => {
                   Shaikh
                 </h2>
 
+                {/* DESCRIPTION */}
+
                 <p
+                  ref={founderDescriptionRef}
                   className="
                     mt-6
                     text-sm
@@ -1082,120 +1210,21 @@ const Page3 = () => {
                   experiences.
                 </p>
 
-                <div className="mt-8 text-xs uppercase tracking-[0.18em] text-black">
-                  Founder & Builder
-                </div>
-              </div>
-            </div>
-          </div>
+                {/* ROLE */}
 
-          {/* =================================================
-              FOUNDER 02
-          ================================================= */}
-
-          <div
-            ref={founder2Ref}
-            className="
-              absolute
-              inset-0
-              flex
-              items-center
-              justify-center
-              px-4
-              md:px-12
-              z-10
-            "
-          >
-            <div
-              className="
-                relative
-                w-full
-                max-w-6xl
-                flex
-                flex-col
-                md:flex-row-reverse
-                items-center
-                gap-8
-                md:gap-16
-              "
-            >
-              <div
-                className="
-                  w-[65vw]
-                  sm:w-[55vw]
-                  md:w-[32%]
-                  max-w-[350px]
-                  aspect-[9/16]
-                  overflow-hidden
-                  rounded-sm
-                  shrink-0
-                  flex
-                  items-center
-                "
-              >
-                <img
-                  ref={image2Ref}
-                  src="https://i.pinimg.com/1200x/e4/7d/44/e47d44b3818c2e2e32626892375aeb49.jpg"
-                  alt="Founder 02"
-                  className="
-                    w-full
-                    h-[60vh]
-                    object-cover
-                    rounded-xl
-                  "
-                />
-              </div>
-
-              <div className="w-full md:w-[42%]">
                 <div
-                  ref={number2Ref}
+                  ref={founderRoleRef}
                   className="
+                    mt-8
                     text-xs
                     uppercase
-                    tracking-[0.25em]
-                    text-gray-600
-                    mb-5
-                  "
-                >
-                  02 / Founder
-                </div>
-
-                <h2
-                  className="
-                    text-4xl
-                    sm:text-5xl
-                    md:text-6xl
-                    font-sans
-                    leading-[1.1]
-                    tracking-tight
+                    tracking-[0.18em]
                     text-black
-                    font-semibold
                   "
                 >
-                  Emilia
-                  <br />
-                  Vogel
-                </h2>
-
-                <p
-                  className="
-                    mt-6
-                    text-sm
-                    sm:text-base
-                    leading-relaxed
-                    text-gray-600
-                    max-w-sm
-                  "
-                >
-                  Turning complex ideas into purposeful digital
-                  experiences through strategic thinking, hands-on
-                  building, and a constant drive to create what comes
-                  next.
-                </p>
-
-                <div className="mt-8 text-xs uppercase tracking-[0.18em] text-black">
                   Founder & Builder
                 </div>
+
               </div>
             </div>
           </div>
@@ -1218,6 +1247,7 @@ const Page3 = () => {
             "
           >
             <div>
+
               <p className="text-xs uppercase tracking-[0.25em] text-gray-400 mb-7">
                 One Direction
               </p>
@@ -1258,6 +1288,7 @@ const Page3 = () => {
                 happen when creativity, technology and purpose
                 move together.
               </p>
+
             </div>
           </div>
 
