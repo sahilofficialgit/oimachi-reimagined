@@ -529,19 +529,6 @@ const Page5 = () => {
 
           <div>
             <p className="text-[10px] uppercase tracking-widest text-white/30 mb-3">
-              Phone
-            </p>
-
-            <a
-              href="tel:+919011724797"
-              className="text-sm hover:text-white/50 transition-colors"
-            >
-              +91 90117 24797
-            </a>
-          </div>
-
-          <div>
-            <p className="text-[10px] uppercase tracking-widest text-white/30 mb-3">
               Location
             </p>
 
@@ -606,7 +593,7 @@ const Page5 = () => {
         <div className="flex flex-col md:flex-row justify-between gap-4 text-[10px] uppercase tracking-[0.15em] text-white/35">
           <p>© 2026 Studio</p>
 
-          <p>Built with curiosity & intent</p>
+          <p>Built with curiosity & intent by Sahil Shaikh</p>
 
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
