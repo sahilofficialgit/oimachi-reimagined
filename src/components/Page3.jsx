@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useRef } from "react";
-
+import myphoto from "../assets/images/my-img.png"
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -1025,7 +1025,7 @@ const Page3 = () => {
               >
                 <img
                   ref={image1Ref}
-                  src="https://i.pinimg.com/736x/ae/32/35/ae32350bccaf286509ffa3bcd989c906.jpg"
+                  src={myphoto}
                   className="
                     w-full
                     h-[60vh]
@@ -1061,9 +1061,9 @@ const Page3 = () => {
                     font-semibold
                   "
                 >
-                  Mila
+                  Sahil
                   <br />
-                  Anders
+                  Shaikh
                 </h2>
 
                 <p

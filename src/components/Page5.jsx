@@ -577,8 +577,8 @@ const Page5 = () => {
           ref={wordmarkRef}
           className="origin-center whitespace-nowrap"
         >
-          <h2 className="text-[22vw] md:text-[18vw] font-semibold leading-none tracking-[-0.09em] text-center">
-            STUDIO
+          <h2 className="text-[15vw] md:text-[13vw] font-semibold leading-none tracking-[-0.09em] text-center">
+            OREN STUDIO
           </h2>
         </div>
 
