@@ -8,7 +8,6 @@ gsap.registerPlugin(ScrollTrigger);
 const HeroText = () => {
   const heroRef = useRef(null);
   const wordRef = useRef(null);
-  const labelRef = useRef(null);
   const headingRef = useRef(null);
 
   useGSAP(
@@ -23,13 +22,8 @@ const HeroText = () => {
       let index = 0;
 
       // -----------------------------------------
-      // INITIAL STATES
+      // INITIAL STATE
       // -----------------------------------------
-
-      gsap.set(labelRef.current, {
-        y: 25,
-        opacity: 0,
-      });
 
       gsap.set(headingRef.current, {
         y: 70,
@@ -51,17 +45,6 @@ const HeroText = () => {
       });
 
       tl.to(
-        labelRef.current,
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-        },
-        0
-      );
-
-      tl.to(
         headingRef.current,
         {
           y: 0,
@@ -70,7 +53,7 @@ const HeroText = () => {
           duration: 1.4,
           ease: "power4.out",
         },
-        0.08
+        0
       );
 
       // -----------------------------------------
@@ -87,6 +70,7 @@ const HeroText = () => {
           filter: "blur(8px)",
           duration: 0.45,
           ease: "power3.in",
+
           onComplete: () => {
             index = (index + 1) % words.length;
 
@@ -126,40 +110,17 @@ const HeroText = () => {
     <div
       ref={heroRef}
       className="
-        min-h-[32vh]
-        md:h-[42vh]
+        min-h-[20vh]
+        md:h-[30vh]
         flex
         flex-col
-        justify-end
+        justify-center
         gap-2
         py-6
         md:py-5
         overflow-hidden
       "
     >
-      {/* SMALL LABEL */}
-
-      <div
-        ref={labelRef}
-        className="
-          flex
-          items-center
-          justify-between
-          border-b
-          border-black/10
-          pb-3
-          mb-3
-        "
-      >
-        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.22em] text-black/40">
-          Independent Digital Studio
-        </span>
-
-        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.22em] text-black/40">
-          2026
-        </span>
-      </div>
-
       {/* MAIN HEADING */}
 
       <div ref={headingRef}>

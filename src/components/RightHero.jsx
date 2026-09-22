@@ -17,7 +17,7 @@ const RightHero = () => {
   ];
 
   useGSAP(() => {
-    const services = servicesRef.current.children;
+    const serviceItems = servicesRef.current.children;
 
     const tl = gsap.timeline({
       defaults: {
@@ -66,7 +66,7 @@ const RightHero = () => {
         "-=0.25"
       )
       .fromTo(
-        services,
+        serviceItems,
         {
           x: 25,
           opacity: 0,
@@ -93,16 +93,7 @@ const RightHero = () => {
         "-=0.2"
       );
 
-    // subtle number rotation
-    gsap.to(numberRef.current, {
-      rotation: 360,
-      duration: 18,
-      repeat: -1,
-      ease: "none",
-    });
-
-    // Service hover
-    Array.from(services).forEach((item) => {
+    Array.from(serviceItems).forEach((item) => {
       const arrow = item.querySelector(".service-arrow");
 
       item.addEventListener("mouseenter", () => {
@@ -135,7 +126,7 @@ const RightHero = () => {
     });
 
     return () => {
-      Array.from(services).forEach((item) => {
+      Array.from(serviceItems).forEach((item) => {
         item.replaceWith(item.cloneNode(true));
       });
     };
@@ -147,8 +138,10 @@ const RightHero = () => {
       className="
         w-full
         md:w-[27%]
-        h-[32vh]
+        h-auto
         md:h-full
+        min-h-[62vh]
+        md:min-h-0
         border border-black/10
         px-5
         py-5
@@ -199,7 +192,7 @@ const RightHero = () => {
       {/* SERVICES */}
       <div
         ref={servicesRef}
-        className="mt-8 md:mt-0"
+        className="mt-10 md:mt-0"
       >
         {services.map((service, index) => (
           <div
@@ -212,7 +205,7 @@ const RightHero = () => {
               justify-between
               border-t
               border-black/15
-              py-2.5
+              py-3
               md:py-[0.55vw]
               cursor-pointer
             "
@@ -234,18 +227,21 @@ const RightHero = () => {
         ))}
       </div>
 
-      {/* BOTTOM */}
+      {/* BOTTOM / EXPLORE */}
       <div
         ref={exploreRef}
         className="
-          hidden
-          md:flex
+          flex
           items-center
           justify-between
           border-t
           border-black/15
-          pt-[0.7vw]
-          text-[0.65vw]
+          pt-4
+          mt-10
+          md:pt-[0.7vw]
+          md:mt-0
+          text-[10px]
+          md:text-[0.65vw]
           tracking-[0.12em]
           uppercase
         "
